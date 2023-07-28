@@ -1,0 +1,14 @@
+1. 生成一個RSA私鑰 >>私鑰文件：privkey.pem
+2. 創建一個證書籤名請求（CSR）>>CSR文件:signreq.csr
+3. 用私鑰(privkey.pem)簽名CSR(signreq.csr) >>證書文件：certificate.pem
+
+
+以上是生成私鑰文件和證書文件的拆解步驟，其實我們可以簡便的通過一條語句生成需要的兩個文件，省略生成CSR文件的環節：
+
+$openssl req -newkey rsa:2048 -nodes -keyout privkey.pem -x509 -days 36500 -out certificate.pem
+
+以上語句生成的私鑰帶有passphrase密鑰保護，如果不需要可以去掉語句中的-nodes。
+語句中privkey.pem和certificate.pem就是我們需要的文件。
+接下來就可以利用私鑰與證書實現加密通信了。
+
+參考文獻:https://blog.csdn.net/ccj15010192778/article/details/103646988
